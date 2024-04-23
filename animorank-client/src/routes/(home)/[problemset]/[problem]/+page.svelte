@@ -1,5 +1,8 @@
 <script lang="ts">
     import CodeEditor from '$lib/components/CodeEditor.svelte'
+    export let data
+
+    let problem = data.problem
     
     $: value = "#include<stdio.h>\n\nint main(){ \n\n  return 0;\n}"
 
@@ -52,7 +55,7 @@
 
         </span>
 
-        <CodeEditor bind:value bind:setValue/>
+        <CodeEditor bind:value bind:setValue bind:problem/>
     </div>
 
 </div>
