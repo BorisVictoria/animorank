@@ -11,7 +11,6 @@
     $: leftWidth = innerWidth / 2 + offset
     $: rightWidth = innerWidth - leftWidth
 
-    $: console.log(leftWidth)
     
     let value = "#include<stdio.h>\n\nint main(){ \n\n  return 0;\n}"
 
@@ -24,9 +23,7 @@
     }
 
     const startResize = (e : MouseEvent) => {
-        console.log('resizing')
         let initial = e.clientX
-        console.log(initial)
         document.onmousemove = (e) => {
             offset -= leftWidth - e.clientX 
         }
