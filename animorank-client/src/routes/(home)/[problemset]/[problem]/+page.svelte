@@ -1,27 +1,28 @@
 <script lang="ts">
     import CodeEditor from '$lib/components/CodeEditor.svelte'
-    import { onMount } from 'svelte'
     export let data
 
     let problem = data.problem
-    let innerWidth : number = 0
+    let innerWidth : number = 0 //gets the width of the page
 
-    let offset = 0
+    let offset = 0 //offset state, determines how much more pixels should be taken by the right panel.
 
-    $: leftWidth = innerWidth / 2 + offset
+    $: leftWidth = innerWidth / 2 + offset 
     $: rightWidth = innerWidth - leftWidth
 
     
     let value = "#include<stdio.h>\n\nint main(){ \n\n  return 0;\n}"
 
-    //TODO: Add proper type
-    let setValue : () => void;
+    let setValue : () => void
 
+    //this function sends a post request to the api.
     const handleSubmit = async () => {
         setValue()
         const res = await fetch("/api", {method: "POST", body: JSON.stringify(value)})
     }
 
+
+    //start resize, called when the mouse is held down on the resize bar. assigns a listener on mousemove which modifies the offset state.
     const startResize = (e : MouseEvent) => {
         let initial = e.clientX
         document.onmousemove = (e) => {
@@ -29,12 +30,13 @@
         }
     }
 
+    //stops resize, called on mouseUp, removes the listener for mousemove.
     const abortResize = () => {
         document.onmousemove = null
     }
 
+    //resets resize. this function is called when the middle button of the resize bar is clicked. setting offset back to 0.
     const resetResize = () => {
-
         offset = 0
     }
 
@@ -67,7 +69,7 @@
 
     </div>
 
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="w-2 cursor-col-resize flex justify-center items-center bg-black/30" id="divider" on:mousedown={startResize}> 
         
        <button class="w-full" title="reset sizing" on:click={resetResize}> | </button>
