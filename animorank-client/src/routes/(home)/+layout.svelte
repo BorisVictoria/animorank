@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
     import "../../app.css"
+    let loggedIn = false
 </script>
 
 
@@ -24,9 +25,10 @@
             </div>
         </div>
         
+        
         <!--Dropdown start-->
         <div class="flex gap-2 flex-none ml-auto dropdown dropdown-bottom dropdown-end">
-            
+            {#if loggedIn}
             <!--Avatar start-->
             <div tabindex="0" role="button" class="flex btn btn-ghost gap-5">
                 <div class="text-base">
@@ -44,8 +46,15 @@
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
+            
+            {:else}
+                <button class="btn btn-primary text-white">Sign In</button>
+            {/if}
         </div>
         <!--Dropdown end-->
+
+
+        
     </div>
     <!--Navbar end-->
 
