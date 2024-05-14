@@ -7,7 +7,7 @@
 <div class="flex flex-col h-screen">
 
     <!--Navbar start-->
-    <div class="navbar bg-base-100 h-16 border-b-2 px-10">
+    <div class="navbar h-16 border-b-2 px-10">
         
         <div class="flex-none">
             <a href="/" class="btn btn-ghost text-xl">AnimoRank</a>
